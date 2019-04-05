@@ -17,13 +17,13 @@
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                             <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="https://usf-cs360-2017.github.io/portfolio-Ljfernando/">
-                            Lance Fernando
+                        <a class="navbar-brand" href="https://ljfernando.github.io/DataVizPortfolio/">
+                            DataViz Portfolio
                         </a>
+                        <a class="navbar-brand" href="https://ljfernando.github.io/">
+                            Personal Website
+                        </a>                        
                     </div>
                 </div>
             </nav>
@@ -32,5 +32,34 @@
     <center>
         <div id="plot"></div>
     </center>
+
+    <div class="row">
+        <div class="container" style="text-align: left">
+            <div class="col-lg-4">
+                <h1>About The Data</h1>              
+                <p>
+                This puzzle comes from Dr. Chiara Sabatti at Stanford University. The dataset has 21K rows and covers 10 local workstation IPs over a three month period. Half of these local IPs were compromised at some point during this period and became members of various botnets. Each row consists of four columns:
+                <li> date: yyyy-mm-dd (from 2006-07-01 through 2006-09-30)</li>
+                <li> l_ipn: local IP (coded as an integer from 0-9)</li>
+                <li> r_asn: remote ASN (an integer which identifies the remote ISP)</li>
+                <li> f: flows (count of connnections for that day)</li>
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <h1>How Does It Work?</h1>              
+                <p>
+                Each circle represents the local machine, where the IP is indicated by the number above. The circles themselves change in size depending on the relative number of connections made by that machine on that particular day. The outer circle represents the 95th percentile of the number of connections made overall for each machine. The slider can be used to cycle through the dates in order to see how the network traffic changes throughout time for each machine. The red lines above the slider indicate the number of machines whose activity was greater than the 95th percentile for that particular day.
+                </p>
+            </div>     
+            <div class="col-lg-4">
+                <h1>Data Preparation</h1>              
+                <p>
+                To compute the number of connections made by each IP, I first grouped by both date and IP, then summed over the number of flows. I then grouped the aggregated sum column and computed the 95th percentile to get the bounding values for the outer circles. Many machines had varying activity, thus it was very important to standardize the visual
+                encodings. Each circle size is relative to that machine’s activity. With the assumption that anomalous behavior occurs when the machine reaches greater than the 95th percentile of its regular traffic, this visualization shows an abundance of anomalous events. Depending on one’s definition of an anomaly, the visual display could change drastically.
+                </p>
+            </div>            
+
+        </div>
+    </div>
 </body>  
 <script src="script.js"></script>
